@@ -470,7 +470,7 @@ em,.italic{font-style:italic}
   background:radial-gradient(80% 130% at 50% -20%,hsl(var(--brass-hsl) / .28),transparent 60%)}
 .cta .wrap{position:relative;z-index:2}
 .cta h2{color:#F6F0E5}
-.cta .lead{color:var(--text-on-dark-soft);max-width:48ch;margin-inline:auto}
+.cta .lead{color:var(--text-on-dark-soft);max-width:48ch;margin-inline:auto;margin-top:1.3rem}
 .cta .phone-lg{font-family:var(--font-display);font-style:italic;font-size:clamp(2rem,5.5vw,3.1rem);
   color:#F6F0E5;display:inline-block;margin:.6rem 0 1.6rem;transition:color .2s var(--ease)}
 .cta .phone-lg:hover{color:var(--accent-bright)}
@@ -613,7 +613,8 @@ a:focus-visible,.btn:focus-visible,button:focus-visible,.tile:focus-visible{outl
 
 /* 01 La barbería — afinado móvil */
 @media (max-width:560px){
-  .split__media{aspect-ratio:1/1}
+  .split__media,.hide-mobile{display:none}
+  .split{gap:0}
   .split__body .feature-list{margin-top:1.2rem}
   .split__body .feature-list li{padding:.6rem 0}
 }
@@ -666,7 +667,7 @@ a:focus-visible,.btn:focus-visible,button:focus-visible,.tile:focus-visible{outl
   <div class="wrap">
     <span class="kicker"><span class="kicker__line"></span> Contacto y ubicación</span>
     <h1 class="display">Estamos en <br><span class="ital">pleno Burgos.</span></h1>
-    <p class="lead">En la calle Doña Constanza. Sin cita previa: te atendemos por orden de llegada. Llama, escríbenos por WhatsApp o pásate directamente.</p>
+    <p class="lead">En la calle Doña Constanza. Llama, escríbenos por WhatsApp o pásate directamente.</p>
   </div>
 </section>
 
@@ -675,7 +676,7 @@ a:focus-visible,.btn:focus-visible,button:focus-visible,.tile:focus-visible{outl
 
     <div class="info reveal">
       <div class="info__b">
-        <span class="pill"><span class="dot"></span> Sin cita · por orden de llegada</span>
+        <span class="pill"><span class="dot"></span> Abierto de lunes a sábado</span>
 
         <div class="info-row">
           <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s7-5.7 7-11a7 7 0 1 0-14 0c0 5.3 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></span>

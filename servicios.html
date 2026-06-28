@@ -470,7 +470,7 @@ em,.italic{font-style:italic}
   background:radial-gradient(80% 130% at 50% -20%,hsl(var(--brass-hsl) / .28),transparent 60%)}
 .cta .wrap{position:relative;z-index:2}
 .cta h2{color:#F6F0E5}
-.cta .lead{color:var(--text-on-dark-soft);max-width:48ch;margin-inline:auto}
+.cta .lead{color:var(--text-on-dark-soft);max-width:48ch;margin-inline:auto;margin-top:1.3rem}
 .cta .phone-lg{font-family:var(--font-display);font-style:italic;font-size:clamp(2rem,5.5vw,3.1rem);
   color:#F6F0E5;display:inline-block;margin:.6rem 0 1.6rem;transition:color .2s var(--ease)}
 .cta .phone-lg:hover{color:var(--accent-bright)}
@@ -613,7 +613,8 @@ a:focus-visible,.btn:focus-visible,button:focus-visible,.tile:focus-visible{outl
 
 /* 01 La barbería — afinado móvil */
 @media (max-width:560px){
-  .split__media{aspect-ratio:1/1}
+  .split__media,.hide-mobile{display:none}
+  .split{gap:0}
   .split__body .feature-list{margin-top:1.2rem}
   .split__body .feature-list li{padding:.6rem 0}
 }
@@ -705,7 +706,7 @@ a:focus-visible,.btn:focus-visible,button:focus-visible,.tile:focus-visible{outl
       </div>
 
     </div>
-    <p class="note reveal">Sin cita previa: te atendemos por orden de llegada. Para diseños grandes o cualquier duda, escríbenos antes por WhatsApp y lo confirmamos.</p>
+    <p class="note reveal">Para diseños grandes o cualquier duda, escríbenos antes por WhatsApp y lo confirmamos.</p>
   </div>
 </section>
 
@@ -717,8 +718,8 @@ a:focus-visible,.btn:focus-visible,button:focus-visible,.tile:focus-visible{outl
       <h2>Fácil y sin líos</h2>
     </div>
     <div class="steps">
-      <div class="step reveal"><span class="n">01</span><h4>Pásate o llama</h4><p>Sin cita. Si quieres asegurar hueco para un diseño, escríbenos por WhatsApp.</p></div>
-      <div class="step reveal" data-d="1"><span class="n">02</span><h4>Por orden de llegada</h4><p>Te atendemos según llegues. Cuéntanos qué buscas o déjate aconsejar.</p></div>
+      <div class="step reveal"><span class="n">01</span><h4>Pásate o llama</h4><p>Si quieres asegurar hueco para un diseño, escríbenos por WhatsApp.</p></div>
+      <div class="step reveal" data-d="1"><span class="n">02</span><h4>Cuéntanos tu idea</h4><p>Tráenos una referencia o déjate aconsejar; damos con el corte que va contigo.</p></div>
       <div class="step reveal" data-d="2"><span class="n">03</span><h4>Sales nuevo</h4><p>Corte trabajado con calma, cejas repasadas y, si toca, barba a punto.</p></div>
     </div>
     <div class="btn-row center mt-8 reveal">

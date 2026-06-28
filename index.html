@@ -470,7 +470,7 @@ em,.italic{font-style:italic}
   background:radial-gradient(80% 130% at 50% -20%,hsl(var(--brass-hsl) / .28),transparent 60%)}
 .cta .wrap{position:relative;z-index:2}
 .cta h2{color:#F6F0E5}
-.cta .lead{color:var(--text-on-dark-soft);max-width:48ch;margin-inline:auto}
+.cta .lead{color:var(--text-on-dark-soft);max-width:48ch;margin-inline:auto;margin-top:1.3rem}
 .cta .phone-lg{font-family:var(--font-display);font-style:italic;font-size:clamp(2rem,5.5vw,3.1rem);
   color:#F6F0E5;display:inline-block;margin:.6rem 0 1.6rem;transition:color .2s var(--ease)}
 .cta .phone-lg:hover{color:var(--accent-bright)}
@@ -613,7 +613,8 @@ a:focus-visible,.btn:focus-visible,button:focus-visible,.tile:focus-visible{outl
 
 /* 01 La barbería — afinado móvil */
 @media (max-width:560px){
-  .split__media{aspect-ratio:1/1}
+  .split__media,.hide-mobile{display:none}
+  .split{gap:0}
   .split__body .feature-list{margin-top:1.2rem}
   .split__body .feature-list li{padding:.6rem 0}
 }
@@ -711,7 +712,7 @@ a:focus-visible,.btn:focus-visible,button:focus-visible,.tile:focus-visible{outl
     <span class="sep"></span>
     <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M8.1 8.1 20 16M8.1 15.9 20 8"/></svg> Diseños a navaja</span>
     <span class="sep"></span>
-    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> Sin cita previa</span>
+    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> De lunes a sábado</span>
   </div>
 </div>
 
@@ -724,7 +725,7 @@ a:focus-visible,.btn:focus-visible,button:focus-visible,.tile:focus-visible{outl
     <div class="split__body reveal" data-d="1">
       <span class="kicker"><span class="kicker__num">01</span> La barbería</span>
       <h2>Te sientas, charlamos y sales como nuevo.</h2>
-      <p>Barber Shop 101 es una barbería de barrio en Burgos, en la calle Doña Constanza. Aquí no hay reloj: cada corte se trabaja con calma hasta que queda como tiene que quedar, sea un degradado limpio, un diseño a tu gusto o un repaso de barba.</p>
+      <p class="hide-mobile">Barber Shop 101 es una barbería de barrio en Burgos, en la calle Doña Constanza. Aquí no hay reloj: cada corte se trabaja con calma hasta que queda como tiene que quedar, sea un degradado limpio, un diseño a tu gusto o un repaso de barba.</p>
       <p class="signature">«Manos prodigiosas y dibujos al gusto.»</p>
       <ul class="feature-list">
         <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg></span><div><b>Trato cercano</b> <span>— clientes que repiten año tras año.</span></div></li>
@@ -808,7 +809,7 @@ a:focus-visible,.btn:focus-visible,button:focus-visible,.tile:focus-visible{outl
   <div class="wrap">
     <span class="kicker kicker--center" style="color:var(--accent-bright)"><span class="kicker__line"></span> ¿Te toca corte?</span>
     <h2>Pásate o escríbenos</h2>
-    <p class="lead">C. Doña Constanza, 09007 Burgos · Lun–Vie 11–14 y 17–20 · Sáb 16–20. Sin cita: por orden de llegada.</p>
+    <p class="lead">C. Doña Constanza, 09007 Burgos · Lun–Vie 11–14 y 17–20 · Sáb 16–20.</p>
     <a class="phone-lg" href="tel:+34643875074">643 87 50 74</a>
     <div class="btn-row center">
       <a class="btn btn--accent btn--lg" href="tel:+34643875074"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8a15.5 15.5 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24 11.4 11.4 0 0 0 3.6.58 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.4 11.4 0 0 0 .58 3.6 1 1 0 0 1-.24 1z"/></svg>Llamar</a>
