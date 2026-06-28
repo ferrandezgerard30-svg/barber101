@@ -211,21 +211,39 @@ em,.italic{font-style:italic}
 .nav-toggle .x{display:none}
 .nav-toggle.is-open .menu{display:none}
 .nav-toggle.is-open .x{display:block}
-.nav-backdrop{position:fixed;inset:0;z-index:40;background:hsl(40 28% 8% / .42);backdrop-filter:blur(2px);
-  opacity:0;visibility:hidden;transition:opacity .25s var(--ease),visibility .25s}
-.nav-backdrop.open{opacity:1;visibility:visible}
-@media (min-width:881px){.nav-backdrop{display:none}}
+/* ---- Menú móvil a pantalla completa ---- */
+.mobile-menu{position:fixed;inset:0;z-index:200;background:var(--surface-deep);color:var(--text-on-dark);
+  display:flex;flex-direction:column;opacity:0;visibility:hidden;transform:translateY(-.8rem);
+  transition:opacity .3s var(--ease),transform .35s var(--ease),visibility .3s}
+.mobile-menu.open{opacity:1;visibility:visible;transform:none}
+.mobile-menu::before{content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(90% 55% at 85% 0%,hsl(var(--brass-hsl) / .2),transparent 60%)}
+.mm-inner{position:relative;display:flex;flex-direction:column;min-height:100%;padding:1.05rem var(--gutter) 2.2rem}
+.mm-top{display:flex;align-items:center;justify-content:space-between;min-height:50px}
+.mm-brand{display:inline-flex;align-items:baseline;gap:.5rem;font-family:var(--font-display);font-weight:500;font-size:1.3rem;color:#F6F0E5}
+.mm-brand .num{display:inline-grid;place-items:center;width:1.85rem;height:1.85rem;border-radius:50%;
+  background:var(--accent);color:#fff;font-size:.92rem;font-style:italic;transform:translateY(.12rem)}
+.mm-close{width:44px;height:44px;border-radius:var(--r-sm);border:1px solid var(--border-dark);background:transparent;
+  color:#F6F0E5;display:grid;place-items:center;cursor:pointer;transition:background .2s var(--ease)}
+.mm-close:hover{background:hsl(40 20% 92% / .1)}
+.mm-close svg{width:1.5rem;height:1.5rem}
+.mm-nav{display:flex;flex-direction:column;flex:1;justify-content:center;gap:.1rem;margin:1.5rem 0}
+.mm-nav a{font-family:var(--font-display);font-size:clamp(1.9rem,8vw,2.6rem);font-weight:480;color:#EDE5D6;
+  padding:.55rem 0;border-bottom:1px solid hsl(40 20% 90% / .09);display:flex;align-items:center;justify-content:space-between;
+  transition:color .2s var(--ease),padding-left .25s var(--ease)}
+.mm-nav a::after{content:"→";font-size:1.05rem;opacity:0;transform:translateX(-.4rem);
+  transition:opacity .2s var(--ease),transform .25s var(--ease);color:var(--accent-bright)}
+.mm-nav a:hover,.mm-nav a.is-active{color:var(--accent-bright);padding-left:.5rem}
+.mm-nav a:hover::after,.mm-nav a.is-active::after{opacity:1;transform:none}
+.mm-foot{display:flex;flex-direction:column;gap:1.1rem}
+.mm-cta{display:flex;gap:.6rem}
+.mm-cta .btn{flex:1}
+.mm-info{margin:0;text-align:center;font-size:.85rem;color:var(--text-on-dark-soft)}
+@media (min-width:881px){.mobile-menu{display:none}}
 
 @media (max-width:880px){
   .nav-toggle{display:inline-flex}
-  .nav-links{position:absolute;top:calc(100% + .55rem);left:var(--gutter);right:var(--gutter);
-    flex-direction:column;align-items:stretch;gap:.15rem;z-index:60;
-    background:var(--surface);border:1px solid var(--border);border-radius:var(--r-md);
-    padding:.5rem;box-shadow:var(--shadow-3);
-    opacity:0;visibility:hidden;transform:translateY(-.5rem) scale(.98);transform-origin:top right;
-    transition:opacity .22s var(--ease),transform .26s var(--ease),visibility .22s}
-  .nav-links.open{opacity:1;visibility:visible;transform:none}
-  .nav-links a{padding:.85rem 1rem;border-radius:var(--r-sm);font-size:1.02rem}
+  .nav-links{display:none}
   .nav-end .btn-nav-call{display:none}
 }
 
@@ -557,6 +575,49 @@ a:focus-visible,.btn:focus-visible,button:focus-visible,.tile:focus-visible{outl
   .section-head{margin-bottom:2.2rem}
 }
 
+/* =====================================================================
+   CARRUSEL (reseñas y trabajos en móvil)
+   ===================================================================== */
+.carousel{position:relative}
+.carousel__track{position:relative}
+.carousel__track--works{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(.85rem,1.6vw,1.25rem)}
+.carousel__track--quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(1rem,2vw,1.5rem)}
+.carousel__nav{display:none}
+.carousel__arrow{width:2.9rem;height:2.9rem;border-radius:50%;border:1.5px solid var(--border);background:var(--surface);
+  color:var(--text);display:grid;place-items:center;cursor:pointer;box-shadow:var(--shadow-1);
+  transition:border-color .2s var(--ease),background .2s var(--ease),color .2s var(--ease)}
+.carousel__arrow:hover{border-color:var(--accent);background:var(--accent);color:#fff}
+.carousel__arrow svg{width:1.2rem;height:1.2rem}
+.carousel__dots{display:flex;align-items:center;gap:.5rem}
+.carousel__dot{width:.5rem;height:.5rem;border-radius:50%;border:0;padding:0;background:var(--sand-400);
+  cursor:pointer;transition:background .2s var(--ease),transform .2s var(--ease)}
+.carousel__dot.active{background:var(--accent-strong);transform:scale(1.3)}
+@media (max-width:760px){
+  .carousel__track{display:flex;gap:1rem;overflow-x:auto;scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch;scrollbar-width:none;padding:.25rem .12rem}
+  .carousel__track::-webkit-scrollbar{display:none}
+  .carousel__track>*{flex:0 0 100%;scroll-snap-align:start}
+  .carousel__nav{display:flex;align-items:center;justify-content:center;gap:1.2rem;margin-top:1.6rem}
+}
+
+/* =====================================================================
+   SERVICIOS — rejilla de precios (sección 02)
+   ===================================================================== */
+.svc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(.7rem,1.5vw,1rem);max-width:780px;margin-inline:auto}
+.svc-item{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-md);padding:1.35rem 1rem;
+  text-align:center;box-shadow:var(--shadow-1);transition:transform .25s var(--ease),box-shadow .25s var(--ease)}
+.svc-item:hover{transform:translateY(-3px);box-shadow:var(--shadow-2)}
+.svc-price{display:block;font-family:var(--font-display);font-weight:500;font-size:1.75rem;color:var(--accent-strong);line-height:1}
+.svc-name{display:block;margin-top:.45rem;font-weight:600;font-size:.92rem;color:var(--text-soft)}
+@media (max-width:680px){.svc-grid{grid-template-columns:1fr 1fr;max-width:400px}}
+
+/* 01 La barbería — afinado móvil */
+@media (max-width:560px){
+  .split__media{aspect-ratio:1/1}
+  .split__body .feature-list{margin-top:1.2rem}
+  .split__body .feature-list li{padding:.6rem 0}
+}
+
 </style>
 </head>
 <body>
@@ -579,7 +640,27 @@ a:focus-visible,.btn:focus-visible,button:focus-visible,.tile:focus-visible{outl
     </div>
   </div>
 </header>
-<div class="nav-backdrop" id="navBackdrop"></div>
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <div class="mm-inner">
+    <div class="mm-top">
+      <span class="mm-brand">Barber Shop <span class="num">101</span></span>
+      <button class="mm-close" aria-label="Cerrar menú"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+    </div>
+    <nav class="mm-nav">
+      <a href="index.html">Inicio</a>
+      <a href="servicios.html">Servicios</a>
+      <a href="galeria.html">Trabajos</a>
+      <a href="contacto.html" class="is-active">Contacto</a>
+    </nav>
+    <div class="mm-foot">
+      <div class="mm-cta">
+        <a class="btn btn--accent" href="tel:+34643875074"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8a15.5 15.5 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24 11.4 11.4 0 0 0 3.6.58 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.4 11.4 0 0 0 .58 3.6 1 1 0 0 1-.24 1z"/></svg>Llamar</a>
+        <a class="btn btn--wa" href="https://wa.me/34643875074?text=Hola%2C%20quer%C3%ADa%20pedir%20cita%20en%20Barber%20Shop%20101" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/></svg>WhatsApp</a>
+      </div>
+      <p class="mm-info">C. Doña Constanza, Burgos · Lun–Vie 11–14 · 17–20 / Sáb 16–20</p>
+    </div>
+  </div>
+</div>
 
 <section class="page-hero">
   <div class="wrap">
@@ -717,31 +798,28 @@ a:focus-visible,.btn:focus-visible,button:focus-visible,.tile:focus-visible{outl
 (function () {
   "use strict";
 
-  /* Menú móvil */
+  /* Menú móvil (overlay a pantalla completa) */
   var toggle = document.querySelector(".nav-toggle");
-  var links = document.getElementById("navLinks");
-  var backdrop = document.getElementById("navBackdrop");
-  if (toggle && links) {
+  var menu = document.getElementById("mobileMenu");
+  if (toggle && menu) {
+    var closeBtn = menu.querySelector(".mm-close");
     var setMenu = function (open) {
-      links.classList.toggle("open", open);
+      menu.classList.toggle("open", open);
+      menu.setAttribute("aria-hidden", open ? "false" : "true");
       toggle.classList.toggle("is-open", open);
       toggle.setAttribute("aria-expanded", open ? "true" : "false");
-      toggle.setAttribute("aria-label", open ? "Cerrar menú" : "Abrir menú");
-      if (backdrop) backdrop.classList.toggle("open", open);
       document.body.style.overflow = open ? "hidden" : "";
     };
-    toggle.addEventListener("click", function () {
-      setMenu(!links.classList.contains("open"));
-    });
-    links.querySelectorAll("a").forEach(function (a) {
+    toggle.addEventListener("click", function () { setMenu(!menu.classList.contains("open")); });
+    if (closeBtn) closeBtn.addEventListener("click", function () { setMenu(false); });
+    menu.querySelectorAll("a").forEach(function (a) {
       a.addEventListener("click", function () { setMenu(false); });
     });
-    if (backdrop) backdrop.addEventListener("click", function () { setMenu(false); });
     document.addEventListener("keydown", function (e) {
-      if (e.key === "Escape" && links.classList.contains("open")) setMenu(false);
+      if (e.key === "Escape" && menu.classList.contains("open")) setMenu(false);
     });
     window.addEventListener("resize", function () {
-      if (window.innerWidth > 880 && links.classList.contains("open")) setMenu(false);
+      if (window.innerWidth > 880 && menu.classList.contains("open")) setMenu(false);
     });
   }
 
@@ -796,6 +874,51 @@ a:focus-visible,.btn:focus-visible,button:focus-visible,.tile:focus-visible{outl
   } else {
     reveals.forEach(function (el) { el.classList.add("in"); });
   }
+  /* Carruseles (reseñas y trabajos) */
+  document.querySelectorAll("[data-carousel]").forEach(function (car) {
+    var track = car.querySelector(".carousel__track");
+    if (!track) return;
+    var items = Array.prototype.slice.call(track.children);
+    var dotsWrap = car.querySelector(".carousel__dots");
+    var dots = [];
+    function curr() {
+      var sl = track.scrollLeft, best = 0, bd = Infinity;
+      items.forEach(function (it, i) {
+        var d = Math.abs(it.offsetLeft - sl);
+        if (d < bd) { bd = d; best = i; }
+      });
+      return best;
+    }
+    function goTo(i) {
+      i = Math.max(0, Math.min(items.length - 1, i));
+      track.scrollTo({ left: items[i].offsetLeft, behavior: "smooth" });
+    }
+    if (dotsWrap) {
+      items.forEach(function (_, i) {
+        var b = document.createElement("button");
+        b.className = "carousel__dot";
+        b.setAttribute("aria-label", "Ir al elemento " + (i + 1));
+        b.addEventListener("click", function () { goTo(i); });
+        dotsWrap.appendChild(b);
+        dots.push(b);
+      });
+    }
+    function update() {
+      var idx = curr();
+      dots.forEach(function (d, i) { d.classList.toggle("active", i === idx); });
+    }
+    car.querySelectorAll(".carousel__arrow").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        goTo(curr() + parseInt(btn.getAttribute("data-dir"), 10));
+      });
+    });
+    var raf;
+    track.addEventListener("scroll", function () {
+      if (raf) cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(update);
+    });
+    update();
+  });
 })();
 
 </script>
