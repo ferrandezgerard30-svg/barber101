@@ -77,7 +77,7 @@
   --space-5:1.5rem; --space-6:2rem;   --space-7:3rem;   --space-8:4rem;
   --space-9:6rem;   --space-10:8rem;
   --gutter:clamp(1.25rem,5vw,4rem);
-  --section-y:clamp(4.5rem,9vw,8.5rem);
+  --section-y:clamp(3.25rem,8vw,8.5rem);
   --maxw:1200px;
   --maxw-text:62ch;
 
@@ -115,10 +115,10 @@ button{font:inherit;color:inherit}
 /* --------------------------- TIPOGRAFÍA ------------------------------ */
 h1,h2,h3,h4{
   font-family:var(--font-display);font-optical-sizing:auto;
-  font-weight:500;line-height:1.06;letter-spacing:-.015em;margin:0;color:var(--text);
+  font-weight:500;line-height:1.06;letter-spacing:-.015em;margin:0;color:var(--text);text-wrap:balance;
 }
 .display{
-  font-size:clamp(2.9rem,6.4vw,5.25rem);font-weight:480;line-height:.98;letter-spacing:-.025em;
+  font-size:clamp(2.55rem,6.6vw,5.25rem);font-weight:480;line-height:1.0;letter-spacing:-.02em;text-wrap:balance;
 }
 h1{font-size:clamp(2.6rem,5.4vw,4.25rem)}
 h2{font-size:clamp(2rem,3.8vw,3.1rem)}
@@ -264,10 +264,10 @@ em,.italic{font-style:italic}
 .badge-est small{color:var(--text-muted);font-weight:400}
 
 @media (max-width:880px){
-  .hero__grid{grid-template-columns:1fr;gap:2.25rem}
-  .hero__media{order:-1;max-width:440px}
+  .hero__grid{grid-template-columns:1fr;gap:2rem}
+  .hero__media{order:-1;max-width:400px;margin-inline:auto}
   .frame{aspect-ratio:3/4}
-  .seal{width:5.4rem;height:5.4rem;right:-.4rem;top:-.4rem}
+  .seal{width:5.2rem;height:5.2rem;right:-.3rem;top:-.3rem}
   .seal b{font-size:1.2rem}
 }
 
@@ -300,7 +300,7 @@ em,.italic{font-style:italic}
 @media (max-width:860px){
   .split,.split--reverse{grid-template-columns:1fr;gap:2rem}
   .split--reverse .split__media{order:-1}
-  .split__media{aspect-ratio:3/4;max-width:440px}
+  .split__media{aspect-ratio:3/4;max-width:420px;margin-inline:auto}
 }
 
 /* =====================================================================
@@ -506,6 +506,47 @@ a:focus-visible,.btn:focus-visible,button:focus-visible,.tile:focus-visible{outl
 @media (prefers-reduced-motion:reduce){
   *{scroll-behavior:auto!important;transition-duration:.001ms!important;animation-duration:.001ms!important}
   .reveal{opacity:1;transform:none}
+}
+
+/* =====================================================================
+   AJUSTES MÓVIL (responsive fino)
+   ===================================================================== */
+@media (max-width:820px){
+  .contact-grid{grid-template-columns:1fr}
+  .map,.map iframe{min-height:300px}
+}
+@media (max-width:600px){
+  .display br{display:none}                 /* saltos forzados fuera: deja fluir el texto */
+}
+@media (max-width:560px){
+  /* tiras: en columna y sin puntos separadores */
+  .strip{flex-direction:column;gap:.7rem!important;text-align:center}
+  .strip span{justify-content:center}
+  .strip .sep{display:none}
+  /* meta del hero apilada */
+  .hero__meta{flex-direction:column;align-items:flex-start;gap:.55rem;margin-top:1.4rem}
+  .meta-dot{display:none}
+  /* sello y chapa DENTRO del marco para que no se corten */
+  .seal{right:.6rem;top:.6rem;width:4.6rem;height:4.6rem}
+  .seal b{font-size:1.05rem}.seal span{font-size:.5rem}.seal .stars{font-size:.55rem}
+  .badge-est{left:.6rem;bottom:.6rem;font-size:.76rem;padding:.42rem .8rem}
+  /* cabeceras de subpágina sin tirón de alineación */
+  .page-hero__row{display:block}
+  .page-hero__row .lead{margin-top:1rem}
+}
+@media (max-width:520px){
+  /* CTAs principales a ancho completo (mejor zona de toque) */
+  .hero__cta .btn,.cta .btn-row .btn{flex:1 1 100%}
+  .btn{padding:.92rem 1.3rem}
+  .btn--lg{padding:1rem 1.4rem;font-size:.95rem}
+}
+@media (max-width:480px){
+  .info__b{padding:1.4rem}
+  .hours li{font-size:.9rem;padding:.5rem 0}
+  .hours .h{font-size:.82rem}
+  .price-list,.price-card__top{padding-left:1.4rem;padding-right:1.4rem}
+  .quote{padding:1.5rem 1.4rem}
+  .section-head{margin-bottom:2.2rem}
 }
 
 </style>
